@@ -199,6 +199,35 @@ body { margin: 0; font-family: var(--font-portfolio); font-size: 13px; letter-sp
 .secondary-page h1 { font-size: 42px; font-weight: 400; margin: 0 0 25px; }
 .project-row { display: flex; align-items: center; justify-content: space-between; padding: 18px 0; border-bottom: 1px solid var(--border); font-size: 20px; }
 .project-row span { font-size: 11px; color: var(--muted-foreground); }
+.project-row .text-reveal, .project-row .text-reveal-character { font-size: inherit; color: inherit; }
+.text-reveal { display: inline-block; }
+.text-reveal-character { display: inline-block; }
+.portfolio-pill-motion { position: relative; overflow: hidden; isolation: isolate; transition: color .5s cubic-bezier(.4, 0, 0, 1), border-color .5s cubic-bezier(.4, 0, 0, 1); }
+.portfolio-pill-motion > span { position: relative; z-index: 1; }
+.portfolio-pill-motion::before, .portfolio-pill-motion::after { content: ""; position: absolute; inset: 0; z-index: 0; background: var(--primary); pointer-events: none; }
+.portfolio-pill-motion::before { transform: translateY(-100%); border-radius: 0 0 50% 50%; }
+.portfolio-pill-motion::after { transform: translateY(100%); border-radius: 50% 50% 0 0; }
+.portfolio-pill-motion.portfolio-pill-outline:is(:hover, :focus-visible) { background: transparent; color: var(--primary-foreground); border-color: var(--primary); }
+.portfolio-pill-motion:is(:hover, :focus-visible)::before, .portfolio-pill-motion:is(:hover, :focus-visible)::after { transform: translateY(0); border-radius: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .portfolio-pill-motion::before, .portfolio-pill-motion::after { transition: transform .5s cubic-bezier(.4, 0, 0, 1), border-radius .5s cubic-bezier(.4, 0, 0, 1); }
+  .secondary-page .text-reveal { --reveal-delay: 0ms; }
+  .secondary-page .text-reveal-character { animation: portfolio-text-enter .75s cubic-bezier(.16, 1, .3, 1) both; animation-delay: calc(var(--reveal-delay) + var(--character-delay, 0ms)); }
+  .text-reveal-character:nth-child(6n + 1) { --character-delay: 40ms; }
+  .text-reveal-character:nth-child(6n + 2) { --character-delay: 160ms; }
+  .text-reveal-character:nth-child(6n + 3) { --character-delay: 80ms; }
+  .text-reveal-character:nth-child(6n + 4) { --character-delay: 200ms; }
+  .text-reveal-character:nth-child(6n + 5) { --character-delay: 0ms; }
+  .text-reveal-character:nth-child(6n) { --character-delay: 120ms; }
+  .secondary-page .project-row:nth-child(2) .text-reveal { --reveal-delay: 100ms; }
+  .secondary-page .project-row:nth-child(3) .text-reveal { --reveal-delay: 160ms; }
+  .secondary-page .project-row:nth-child(4) .text-reveal { --reveal-delay: 220ms; }
+  .secondary-page .project-row:nth-child(5) .text-reveal { --reveal-delay: 280ms; }
+  .secondary-page .project-row:nth-child(6) .text-reveal { --reveal-delay: 340ms; }
+  .project-index { animation: portfolio-text-enter .75s cubic-bezier(.16, 1, .3, 1) .25s both; }
+}
+@keyframes portfolio-text-enter { from { opacity: 0; transform: translateY(.65em); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .portfolio-pill-motion { transition: none; } }
 @media (min-width: 1600px) { .signature-cluster { bottom: 7.4%; } }
 @media (max-width: 850px) {
   .portfolio-header { right: 21px; gap: 20px; }
