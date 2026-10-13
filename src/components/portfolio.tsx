@@ -7,6 +7,10 @@ import signature from "@/assets/sriyaan-original.asset.json";
 
 export const companies = ["Trusting Social", "Documatic", "Vestlane", "Autonomous", "Genetica"];
 
+function RevealText({ text }: { text: string }) {
+  return <span className="text-reveal" aria-label={text}>{Array.from(text).map((character, index) => <span className="text-reveal-character" aria-hidden="true" key={index}>{character === " " ? "\u00a0" : character}</span>)}</span>;
+}
+
 export function Portfolio({ page = "Home" }: { page?: "Home" | "Projects" | "Archive" }) {
   const [seconds, setSeconds] = useState(23);
   useEffect(() => {
@@ -42,15 +46,15 @@ export function Portfolio({ page = "Home" }: { page?: "Home" | "Projects" | "Arc
           <span className="interest interest-collection">Collection</span>
           <span className="interest interest-music">Music</span>
         </section>
-      </> : <section className="secondary-page"><h1>{page}</h1>{companies.map((company, index) => <div className="project-row" key={company}>{company}<span>{String(index + 1).padStart(2, "0")}</span></div>)}</section>}
+      </> : <section className="secondary-page" key={page}><h1><RevealText text={page} /></h1>{companies.map((company, index) => <div className="project-row" key={company}><RevealText text={company} /><span className="project-index">{String(index + 1).padStart(2, "0")}</span></div>)}</section>}
 
       <footer className="portfolio-footer">
         <div className="footer-left">
           <p className="coordinates">10.8231°N 106.6297°E</p>
           <nav className="page-navigation" aria-label="Main navigation">
             <Button asChild variant={page === "Home" ? "portfolioActive" : "portfolio"}><Link to="/">Home</Link></Button>
-            <Button asChild variant={page === "Projects" ? "portfolioActive" : "portfolio"}><Link to="/projects">Projects</Link></Button>
-            <Button asChild variant={page === "Archive" ? "portfolioActive" : "portfolio"}><Link to="/archive">Archive</Link></Button>
+            <Button asChild className="portfolio-pill-motion" variant={page === "Projects" ? "portfolioActive" : "portfolio"}><Link to="/projects"><span>Projects</span></Link></Button>
+            <Button asChild className="portfolio-pill-motion" variant={page === "Archive" ? "portfolioActive" : "portfolio"}><Link to="/archive"><span>Archive</span></Link></Button>
           </nav>
         </div>
         <div className="social-primary">
