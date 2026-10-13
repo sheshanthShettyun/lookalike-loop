@@ -171,7 +171,7 @@ body { margin: 0; font-family: var(--font-portfolio); font-size: 13px; letter-sp
 .scroll-thread::after { content: ""; position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--foreground); bottom: -1px; left: -1.5px; }
 .scroll-label { margin-top: 22px; font-size: 8px; letter-spacing: 1.8px; line-height: 13px; text-align: center; }
 .signature-cluster { position: absolute; width: 440px; height: 199px; left: 50%; bottom: 55px; transform: translateX(-50%); }
-.signature { position: absolute; top: 31px; left: 0; width: 440px; height: 147px; object-fit: fill; filter: brightness(.72); }
+.signature { position: absolute; top: 31px; left: 0; width: 440px; height: 147px; object-fit: fill; }
 .interest { position: absolute; z-index: 1; background: var(--tag-surface); border: 1px solid var(--border); border-radius: 999px; padding: 5px 13px; font-size: 12px; line-height: 18px; box-shadow: inset 0 1px 3px var(--tag-highlight); white-space: nowrap; }
 .interest-football { left: 7px; top: 0; }
 .interest-games { left: 83px; top: 0; }
