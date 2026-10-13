@@ -3,7 +3,7 @@ import { Eye } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import texture from "@/assets/graphite-background.jpg";
-import signature from "@/assets/sriyaan-signature.png";
+import signature from "@/assets/sriyaan-original.asset.json";
 
 export const companies = ["Trusting Social", "Documatic", "Vestlane", "Autonomous", "Genetica"];
 
@@ -35,7 +35,7 @@ export function Portfolio({ page = "Home" }: { page?: "Home" | "Projects" | "Arc
           <span className="scroll-label">SCROLL<br />TO EXPLORE</span>
         </div>
         <section className="signature-cluster" aria-label="Sriyaan">
-          <img className="signature" src={signature} alt="Sriyaan" width={1536} height={512} />
+          <img className="signature" src={signature.url} alt="Sriyaan" width={380} height={125} />
           <span className="interest interest-football">Football</span>
           <span className="interest interest-games">Playing game</span>
           <span className="interest interest-technology">Technology</span>
